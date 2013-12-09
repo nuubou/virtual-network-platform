@@ -576,7 +576,7 @@ parse_options( int *argc, char **argv[], db_config *config ) {
   int argc_tmp = *argc;
   char *new_argv[ *argc ];
 
-  for ( int i = 0; i <= *argc; ++i ) {
+  for ( int i = 0; i < *argc; ++i ) {
     new_argv[ i ] = ( *argv )[ i ];
   }
 
@@ -683,8 +683,10 @@ parse_options( int *argc, char **argv[], db_config *config ) {
     }
   }
 
+  if ( argc_tmp < *argc ) {
+    ( *argv )[ argc_tmp ] = NULL;
+  }
   *argc = argc_tmp;
-  ( *argv )[ *argc ] = NULL;
 
   reset_getopt();
 
